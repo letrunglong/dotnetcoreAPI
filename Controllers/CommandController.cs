@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CmdApi.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace CmdApi.Controllers
 {
@@ -22,6 +23,7 @@ namespace CmdApi.Controllers
         }
 
         //GET:      api/commands
+        [DisableCors]
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetCommandItem()
         {
@@ -29,6 +31,7 @@ namespace CmdApi.Controllers
         }
         
         //GET:      api/commands/n
+        [DisableCors]
         [HttpGet("{id}")]
         
         public ActionResult<Command> GetCommandItem(int id)
@@ -44,6 +47,7 @@ namespace CmdApi.Controllers
         }
         
         //POST:     api/commands
+        [DisableCors]
         [HttpPost]
         public ActionResult<Command> PostCommandItem(Command command)
         {
@@ -54,6 +58,7 @@ namespace CmdApi.Controllers
         }
 
         // PUT:      api/commands/n
+         [DisableCors]
         [HttpPut("{id}")]
         public ActionResult PutCommandItem(int id, Command command)
         {
@@ -69,6 +74,7 @@ namespace CmdApi.Controllers
         }
 
         //DELETE:   api/commands/n
+         [DisableCors]
         [HttpDelete("{id}")]
         public ActionResult<Command> DeleteCommandItem(int id)
         {
