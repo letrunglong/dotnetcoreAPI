@@ -10,11 +10,6 @@ namespace CmdApi.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        // [HttpGet]
-        // public ActionResult<IEnumerable<string>> GetString()
-        // {
-        //     return new string[] {"this","is", "hard", "course"};
-        // }
         private readonly CommandContext _context; 
 
         public CommandsController(CommandContext context)
