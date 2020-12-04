@@ -10,6 +10,6 @@ namespace CmdApi.Models
         }
 
         public DbSet<Command> CommandItems {get; set;}
-        public DbSet<Users> TblUsers {get;set;}
+        public DbSet<TblUsers> TblUsers {get;set;}
     }
 }

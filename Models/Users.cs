@@ -1,6 +1,6 @@
 namespace CmdApi.Models
 {
-    public class Users
+    public class TblUsers
     {
 
         //Comment set after pulling azure-pipelines.yaml
@@ -10,6 +10,11 @@ namespace CmdApi.Models
         public string UserName {get; set;}
         public string Password {get; set;}
         public string Address {get; set;}
+    }
+    public class Login
+    {
+        public string UserName {get; set;}
+        public string Password {get; set;}
     }
 }
 

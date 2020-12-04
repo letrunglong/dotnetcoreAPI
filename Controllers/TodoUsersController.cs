@@ -22,17 +22,17 @@ namespace CmdApi.Controllers
         }
 
         // GET: api/TodoUsers
-        [DisableCors]
+        [EnableCors("MyPolicy")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetTblUsers()
+        public async Task<ActionResult<IEnumerable<TblUsers>>> GetTblUsers()
         {
             return await _context.TblUsers.ToListAsync();
         }
 
         // GET: api/TodoUsers/5
-        [DisableCors]
+        [EnableCors("MyPolicy")]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<TblUsers>> GetUsers(int id)
         {
             var users = await _context.TblUsers.FindAsync(id);
 
@@ -47,9 +47,9 @@ namespace CmdApi.Controllers
         // PUT: api/TodoUsers/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [DisableCors]
+        [EnableCors("MyPolicy")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        public async Task<IActionResult> PutUsers(int id, TblUsers users)
         {
             if (id != users.Id)
             {
@@ -82,18 +82,20 @@ namespace CmdApi.Controllers
         // more details see https://aka.ms/RazorPagesCRUD.
         [DisableCors]
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
+        public async Task<ActionResult<TblUsers>> PostUsers(Login login)
         {
-            _context.TblUsers.Add(users);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            TblUsers user =  _context.TblUsers.Where(x=>x.UserName == login.UserName && x.Password == login.Password).FirstOrDefault();
+            
+            if(user != null){
+                return Ok(user);
+            }
+            return NotFound();
         }
 
         // DELETE: api/TodoUsers/5
-        [DisableCors]
+        [EnableCors("MyPolicy")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        public async Task<ActionResult<TblUsers>> DeleteUsers(int id)
         {
             var users = await _context.TblUsers.FindAsync(id);
             if (users == null)
